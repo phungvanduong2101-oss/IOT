@@ -1,0 +1,779 @@
+/* =============================================
+   RESET & BASE
+   ============================================= */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background-color: #f0f2f5;
+  color: #333;
+  min-height: 100vh;
+}
+
+/* =============================================
+   NAVBAR
+   ============================================= */
+.navbar {
+  background: #fff;
+  border-bottom: 2px solid #e0e0e0;
+  padding: 0 40px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+}
+
+.nav-list {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 56px;
+  gap: 48px;
+}
+
+.nav-item a {
+  text-decoration: none;
+  color: #555;
+  font-size: 0.92rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  padding-bottom: 4px;
+  transition: color 0.2s;
+}
+
+.nav-item a:hover {
+  color: #333;
+}
+
+.nav-item.active a {
+  color: #111;
+  border-bottom: 2.5px solid #111;
+  font-weight: 700;
+}
+
+/* =============================================
+   DASHBOARD LAYOUT
+   ============================================= */
+.dashboard {
+  display: flex;
+  gap: 16px;
+  padding: 20px 24px;
+  max-width: 1400px;
+  margin: 0 auto;
+  align-items: flex-start;
+}
+
+/* =============================================
+   CHARTS SECTION (LEFT 70%)
+   ============================================= */
+.charts-section {
+  flex: 0 0 70%;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* =============================================
+   SENSOR CARD
+   ============================================= */
+.sensor-card {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.07);
+  display: flex;
+  align-items: stretch;
+  overflow: hidden;
+  min-height: 180px;
+}
+
+/* Left panel: icon + value */
+.sensor-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 18px 16px;
+  min-width: 108px;
+  max-width: 120px;
+  flex-shrink: 0;
+  gap: 6px;
+}
+
+.sensor-label {
+  font-size: 1rem;
+  font-weight: 700;
+  text-align: center;
+  line-height: 1.2;
+}
+
+.sensor-icon {
+  width: 64px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sensor-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.sensor-value {
+  font-size: 1.6rem;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  text-align: center;
+}
+
+/* Color themes per sensor */
+.temp-info   { border-right: 3px solid #ffd0d0; background: #fff8f8; }
+.temp-info .sensor-label { color: #f44336; }
+.temp-info .sensor-value { color: #f44336; }
+
+.humid-info  { border-right: 3px solid #cce5ff; background: #f6faff; }
+.humid-info .sensor-label { color: #2196F3; }
+.humid-info .sensor-value { color: #2196F3; }
+
+.light-info  { border-right: 3px solid #fff0cc; background: #fffdf4; }
+.light-info .sensor-label { color: #e6a800; }
+.light-info .sensor-value { color: #e6a800; }
+
+/* Chart area */
+.chart-wrapper {
+  flex: 1;
+  padding: 12px 16px 10px 8px;
+  min-width: 0;
+  position: relative;
+}
+
+.chart-wrapper canvas {
+  width: 100% !important;
+  height: 155px !important;
+}
+
+/* =============================================
+   DEVICES SECTION (RIGHT 30%)
+   ============================================= */
+.devices-section {
+  flex: 0 0 30%;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.devices-header {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.07);
+  padding: 13px 18px;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #333;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.gear-icon {
+  font-size: 1.15rem;
+}
+
+/* Device Card */
+.device-card {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.07);
+  padding: 18px 20px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  transition: box-shadow 0.2s;
+}
+
+.device-card:hover {
+  box-shadow: 0 4px 18px rgba(0,0,0,0.12);
+}
+
+.device-icon-wrap {
+  width: 72px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.device-svg {
+  width: 100%;
+  height: 100%;
+}
+
+.device-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 10px;
+}
+
+.device-name {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #333;
+  align-self: flex-end;
+}
+
+/* =============================================
+   TOGGLE SWITCH
+   ============================================= */
+.toggle-switch {
+  position: relative;
+  display: inline-block;
+  width: 52px;
+  height: 28px;
+  cursor: pointer;
+}
+
+.toggle-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+  position: absolute;
+}
+
+.slider {
+  position: absolute;
+  inset: 0;
+  background: #ccc;
+  border-radius: 28px;
+  transition: background 0.3s;
+}
+
+.slider::before {
+  content: '';
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  left: 3px;
+  top: 3px;
+  background: #fff;
+  border-radius: 50%;
+  transition: transform 0.3s;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.25);
+}
+
+/* Checked state: move knob right */
+.toggle-switch input:checked + .slider::before {
+  transform: translateX(24px);
+}
+
+/* Per-device ON colors */
+.toggle-switch input:checked + .fan-slider   { background: #f44336; }
+.toggle-switch input:checked + .ac-slider    { background: #2196F3; }
+.toggle-switch input:checked + .light-slider { background: #FFC107; }
+
+/* Device card dimmed when OFF */
+.device-card.off .device-icon-wrap svg path,
+.device-card.off .device-icon-wrap svg circle,
+.device-card.off .device-icon-wrap svg rect,
+.device-card.off .device-icon-wrap svg line {
+  stroke: #bbb;
+  fill: #bbb;
+}
+.device-card.off .device-icon-wrap svg [fill="none"] {
+  fill: none;
+}
+.device-card.off .device-icon-wrap svg [fill="white"],
+.device-card.off .device-icon-wrap svg [fill="#eee"] {
+  fill: #f5f5f5;
+}
+
+/* =============================================
+   RESPONSIVE
+   ============================================= */
+@media (max-width: 900px) {
+  .dashboard {
+    flex-direction: column;
+    padding: 14px 12px;
+  }
+  .charts-section,
+  .devices-section {
+    flex: 1 1 100%;
+    width: 100%;
+  }
+  .nav-list {
+    gap: 20px;
+  }
+  .nav-list a {
+    font-size: 0.8rem;
+  }
+  .devices-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  .devices-header {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 600px) {
+  .sensor-info {
+    min-width: 88px;
+    max-width: 95px;
+    padding: 12px 8px;
+  }
+  .sensor-icon {
+    width: 48px;
+    height: 48px;
+  }
+  .sensor-value {
+    font-size: 1.3rem;
+  }
+  .device-card {
+    padding: 12px 14px;
+  }
+  .devices-section {
+    grid-template-columns: 1fr;
+  }
+  .nav-list {
+    gap: 12px;
+    flex-wrap: wrap;
+    height: auto;
+    padding: 8px 0;
+  }
+}
+
+/* =================================================================
+   DATA SENSOR PAGE — additional styles
+   (appended; does not override any existing HOME styles)
+   ================================================================= */
+
+/* ── Page wrapper ──────────────────────────────────────────────────── */
+.ds-page {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 28px 24px 48px;
+}
+
+/* ── Toolbar (search + filters) ────────────────────────────────────── */
+.ds-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+/* Search box */
+.ds-search-wrap {
+  position: relative;
+  flex: 1 1 200px;
+  max-width: 280px;
+}
+
+.ds-search-wrap svg.search-icon {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 16px;
+  height: 16px;
+  color: #aaa;
+  pointer-events: none;
+}
+
+#ds-search {
+  width: 100%;
+  padding: 8px 34px 8px 12px;
+  border: 1.5px solid #ccc;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  color: #333;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+#ds-search::placeholder { color: #aaa; }
+#ds-search:focus { border-color: #2196F3; }
+
+/* Filter group label + select */
+.ds-filter-group {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+}
+
+.ds-filter-group label {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #444;
+}
+
+.ds-select {
+  padding: 8px 30px 8px 10px;
+  border: 1.5px solid #ccc;
+  border-radius: 6px;
+  font-size: 0.88rem;
+  color: #333;
+  background: #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%23888'/%3E%3C/svg%3E") no-repeat right 10px center;
+  appearance: none;
+  cursor: pointer;
+  outline: none;
+  transition: border-color 0.2s;
+  min-width: 90px;
+}
+
+.ds-select:focus { border-color: #2196F3; }
+
+/* ── Data Table ────────────────────────────────────────────────────── */
+.ds-table-wrap {
+  width: 100%;
+  overflow-x: auto;
+  border-radius: 10px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.09);
+}
+
+.ds-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.92rem;
+  background: #fff;
+  min-width: 560px;
+}
+
+/* Header */
+.ds-table thead tr {
+  background: #1a2238;
+}
+
+.ds-table thead th {
+  color: #fff;
+  font-weight: 700;
+  font-size: 0.88rem;
+  letter-spacing: 0.05em;
+  padding: 14px 18px;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.ds-table thead th:first-child { text-align: center; }
+
+/* Body rows */
+.ds-table tbody tr {
+  border-bottom: 1px solid #e8e8e8;
+  transition: background 0.15s;
+}
+
+.ds-table tbody tr:nth-child(even) { background: #f7f8fa; }
+.ds-table tbody tr:nth-child(odd)  { background: #fff; }
+.ds-table tbody tr:hover           { background: #eef4ff; }
+
+.ds-table tbody td {
+  padding: 13px 18px;
+  text-align: center;
+  color: #333;
+  font-weight: 500;
+}
+
+/* Column alignment tweaks */
+.ds-table td.col-time {
+  text-align: right;
+  color: #555;
+  font-size: 0.87rem;
+  white-space: nowrap;
+}
+
+/* Type color badges — .ds-table td.X wins over .ds-table tbody td */
+.ds-table td.type-temp { color: #FF0000; font-weight: 700; }
+.ds-table td.type-hum  { color: #0099FF; font-weight: 700; }
+.ds-table td.type-lux  { color: #F4B400; font-weight: 700; }
+
+/* Value colors mirror type */
+.ds-table td.val-temp  { color: #FF0000; font-weight: 700; }
+.ds-table td.val-hum   { color: #0099FF; font-weight: 700; }
+.ds-table td.val-lux   { color: #F4B400; font-weight: 700; }
+
+/* Empty state */
+.ds-table .empty-row td {
+  text-align: center;
+  color: #999;
+  padding: 32px;
+  font-size: 0.95rem;
+}
+
+/* ── Pagination ────────────────────────────────────────────────────── */
+.ds-pagination {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 4px;
+  margin-top: 18px;
+  flex-wrap: wrap;
+}
+
+.pg-btn {
+  min-width: 34px;
+  height: 34px;
+  padding: 0 8px;
+  border: 1.5px solid #d0d0d0;
+  border-radius: 6px;
+  background: #fff;
+  color: #333;
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s, color 0.15s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pg-btn:hover:not(:disabled):not(.pg-dots) {
+  background: #f0f4ff;
+  border-color: #2196F3;
+  color: #2196F3;
+}
+
+.pg-btn.active {
+  background: #1a2238;
+  border-color: #1a2238;
+  color: #fff;
+  cursor: default;
+}
+
+.pg-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.pg-dots {
+  border: none;
+  background: transparent;
+  cursor: default;
+  letter-spacing: 1px;
+}
+
+/* ── Responsive overrides for DATA SENSOR ──────────────────────────── */
+@media (max-width: 700px) {
+  .ds-toolbar {
+    gap: 10px;
+  }
+  .ds-search-wrap {
+    max-width: 100%;
+    flex: 1 1 100%;
+  }
+  .ds-filter-group {
+    flex: 1 1 auto;
+  }
+  .ds-pagination {
+    justify-content: center;
+  }
+}
+
+/* =================================================================
+   HISTORY ACTION PAGE — additional styles
+   (appended; does not override HOME or DATA SENSOR styles)
+   ================================================================= */
+
+/* ── HA toolbar: search left + 2×2 grid filters right ─────────────── */
+.ha-toolbar {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+/* Search takes up left side */
+.ha-search-wrap {
+  flex: 0 1 260px;
+  position: relative;
+  align-self: center;
+}
+
+.ha-search-wrap svg.search-icon {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 16px;
+  height: 16px;
+  color: #aaa;
+  pointer-events: none;
+}
+
+#ha-search {
+  width: 100%;
+  padding: 9px 34px 9px 14px;
+  border: 1.5px solid #ccc;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  color: #333;
+  outline: none;
+  transition: border-color 0.2s;
+  background: #fff;
+}
+
+#ha-search::placeholder { color: #aaa; }
+#ha-search:focus         { border-color: #2196F3; }
+
+/* Filter block: 2×2 grid on the right */
+.ha-filters {
+  flex: 1 1 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px 16px;
+}
+
+.ha-filter-group {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  white-space: nowrap;
+}
+
+.ha-filter-group label {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #444;
+  min-width: 44px;
+  text-align: right;
+}
+
+.ha-select {
+  flex: 1;
+  padding: 8px 28px 8px 10px;
+  border: 1.5px solid #ccc;
+  border-radius: 6px;
+  font-size: 0.88rem;
+  color: #333;
+  background: #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%23888'/%3E%3C/svg%3E") no-repeat right 9px center;
+  appearance: none;
+  cursor: pointer;
+  outline: none;
+  transition: border-color 0.2s;
+  min-width: 90px;
+}
+
+.ha-select:focus { border-color: #2196F3; }
+
+/* ── HA Table (shares ds-table-wrap + ds-table base, adding overrides) ─ */
+.ha-table-wrap {
+  width: 100%;
+  overflow-x: auto;
+  border-radius: 10px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.09);
+}
+
+.ha-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.92rem;
+  background: #fff;
+  min-width: 580px;
+}
+
+/* Header */
+.ha-table thead tr  { background: #1a2238; }
+.ha-table thead th  {
+  color: #fff;
+  font-weight: 700;
+  font-size: 0.88rem;
+  letter-spacing: 0.04em;
+  padding: 14px 18px;
+  text-align: left;
+  white-space: nowrap;
+}
+.ha-table thead th:first-child { text-align: center; }
+.ha-table thead th:nth-child(3),
+.ha-table thead th:nth-child(4),
+.ha-table thead th:nth-child(5) { text-align: center; }
+
+/* Body rows */
+.ha-table tbody tr {
+  border-bottom: 1px solid #e8e8e8;
+  transition: background 0.15s;
+}
+.ha-table tbody tr:nth-child(even) { background: #f7f8fa; }
+.ha-table tbody tr:nth-child(odd)  { background: #fff; }
+.ha-table tbody tr:hover           { background: #eef4ff; }
+
+/* Cells */
+.ha-table tbody td {
+  padding: 13px 18px;
+  color: #333;
+}
+
+.ha-table td.ha-col-id       { text-align: center; font-weight: 700; }
+.ha-table td.ha-col-name     { text-align: left;   font-weight: 700; }
+.ha-table td.ha-col-action   { text-align: center; font-weight: 700; }
+.ha-table td.ha-col-status   { text-align: center; font-weight: 700; }
+.ha-table td.ha-col-time     {
+  text-align: right;
+  font-size: 0.87rem;
+  color: #555;
+  white-space: nowrap;
+}
+
+/* Action colors — specificity ngang với .ha-table td.ha-col-action nên thêm .ha-table để thắng */
+.ha-table td.action-on  { color: #0099FF; font-weight: 700; }
+.ha-table td.action-off { color: #FF0000; font-weight: 700; }
+
+/* Status colors */
+.ha-table td.status-success { color: #4CD137; font-weight: 700; }
+.ha-table td.status-failed  { color: #FF0000; font-weight: 700; }
+.ha-table td.status-waiting { color: #FFB800; font-weight: 700; }
+
+/* Empty state */
+.ha-table .ha-empty td {
+  text-align: center;
+  color: #999;
+  padding: 36px;
+  font-size: 0.95rem;
+  font-weight: 400;
+}
+
+/* ── HA Pagination (reuses .pg-btn; only needs container override) ─── */
+.ha-pagination {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 4px;
+  margin-top: 18px;
+  flex-wrap: wrap;
+}
+
+/* ── Responsive ────────────────────────────────────────────────────── */
+@media (max-width: 800px) {
+  .ha-toolbar {
+    flex-direction: column;
+    gap: 14px;
+  }
+  .ha-search-wrap {
+    flex: 1 1 100%;
+    max-width: 100%;
+  }
+  .ha-filters {
+    width: 100%;
+  }
+  .ha-pagination {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .ha-filters {
+    grid-template-columns: 1fr;
+  }
+  .ha-filter-group label {
+    min-width: 54px;
+  }
+}

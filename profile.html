@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Profile — IoT Dashboard</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/profile.css" />
+</head>
+<body>
+
+  <!-- ===== NAVBAR ===== -->
+  <nav class="navbar">
+    <ul class="nav-list">
+      <li class="nav-item"><a href="index.html">HOME</a></li>
+      <li class="nav-item"><a href="data-sensor.html">DATA SENSOR</a></li>
+      <li class="nav-item"><a href="history-action.html">HISTORY ACTION</a></li>
+      <li class="nav-item active"><a href="profile.html">PROFILE</a></li>
+    </ul>
+  </nav>
+
+  <!-- ===== PROFILE PAGE ===== -->
+  <main class="profile-page">
+
+    <div class="profile-card">
+
+      <!-- Avatar -->
+      <div class="profile-avatar-wrap">
+        <img
+          src="assets/images/B23DCCN226.png"
+          alt="Avatar của Phùng Văn Dương"
+          class="profile-avatar"
+          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+        />
+        <!-- Fallback placeholder shown only when image missing -->
+        <div class="profile-avatar-fallback" style="display:none;">
+          <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="40" cy="30" r="18" fill="#ccc"/>
+            <path d="M8 72 C8 52 72 52 72 72" fill="#ccc"/>
+          </svg>
+        </div>
+      </div>
+
+      <!-- Name -->
+      <h1 class="profile-name">Phùng Văn Dương</h1>
+
+      <!-- Student ID -->
+      <p class="profile-id">B23DCCN226</p>
+
+      <!-- Divider -->
+      <hr class="profile-divider" />
+
+      <!-- Links -->
+      <ul class="profile-links">
+
+        <li class="profile-link-item">
+          <span class="profile-link-label">Github:</span>
+          <a
+            href="https://github.com/phungvanduong2101-oss"
+            class="profile-link-url"
+            target="_blank"
+            rel="noopener noreferrer"
+            title="https://github.com/phungvduong"
+          >https://github.com/phungvan...</a>
+        </li>
+
+        <li class="profile-link-item">
+          <span class="profile-link-label">Figma:</span>
+          <a
+            href="https://www.figma.com/design/jrw81GSXqe7HCQnKSQzYqP/Untitled?node-id=0-1&p=f&t=vO49yfOutI2BrphP-0"
+            class="profile-link-url"
+            target="_blank"
+            rel="noopener noreferrer"
+            title="https://www.figma.com/design/"
+          >https://www.figma.com/design/...</a>
+        </li>
+
+        <li class="profile-link-item">
+          <span class="profile-link-label">PDF mô tả dự án:</span>
+          <a
+            href="https://drive.google.com/file/d/1n4NwkC0Ti_rlDXTGSSiNSN-dawvQjpUo/view?usp=sharing"
+            class="profile-link-url"
+            target="_blank"
+            rel="noopener noreferrer"
+            title="https://drive.google.com/drive/folders/"
+          >https://drive.google.c...</a>
+        </li>
+
+      </ul>
+
+    </div><!-- /.profile-card -->
+
+  </main>
+
+</body>
+</html>

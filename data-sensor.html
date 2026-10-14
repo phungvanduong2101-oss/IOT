@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Data Sensor — IoT Dashboard</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- ===== NAVBAR ===== -->
+  <nav class="navbar">
+    <ul class="nav-list">
+      <li class="nav-item"><a href="index.html">HOME</a></li>
+      <li class="nav-item active"><a href="data-sensor.html">DATA SENSOR</a></li>
+      <li class="nav-item"><a href="history-action.html">HISTORY ACTION</a></li>
+      <li class="nav-item"><a href="profile.html">PROFILE</a></li>
+    </ul>
+  </nav>
+
+  <!-- ===== DATA SENSOR PAGE ===== -->
+  <div class="ds-page">
+
+    <!-- Toolbar -->
+    <div class="ds-toolbar">
+
+      <!-- Search -->
+      <div class="ds-search-wrap">
+        <input type="text" id="ds-search" placeholder="Search..." autocomplete="off" />
+        <svg class="search-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="8.5" cy="8.5" r="5.5"/>
+          <line x1="13" y1="13" x2="18" y2="18"/>
+        </svg>
+      </div>
+
+      <!-- Sensor filter -->
+      <div class="ds-filter-group">
+        <label for="ds-sensor">Sensor</label>
+        <select id="ds-sensor" class="ds-select">
+          <option value="ALL">ALL</option>
+          <option value="DHT11">DHT11</option>
+          <option value="LDR">LDR</option>
+        </select>
+      </div>
+
+      <!-- Type filter -->
+      <div class="ds-filter-group">
+        <label for="ds-type">Type</label>
+        <select id="ds-type" class="ds-select">
+          <option value="ALL">ALL</option>
+          <option value="Temp">Temp</option>
+          <option value="Hum">Hum</option>
+          <option value="Lux">Lux</option>
+        </select>
+      </div>
+
+      <!-- Sort -->
+      <div class="ds-filter-group">
+        <label for="ds-sort">Sort</label>
+        <select id="ds-sort" class="ds-select">
+          <option value="newest">Newest</option>
+          <option value="oldest">Oldest</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Table -->
+    <div class="ds-table-wrap">
+      <table class="ds-table">
+        <thead>
+          <tr>
+            <th>SENSOR ID</th>
+            <th>SENSOR</th>
+            <th>Type</th>
+            <th>Value</th>
+            <th>Time</th>
+          </tr>
+        </thead>
+        <tbody id="ds-tbody">
+          <!-- Rows injected by JS -->
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Pagination -->
+    <div class="ds-pagination" id="ds-pagination"></div>
+
+  </div>
+
+  <script src="js/data-sensor.js"></script>
+</body>
+</html>

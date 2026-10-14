@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>History Action — IoT Dashboard</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- ===== NAVBAR ===== -->
+  <nav class="navbar">
+    <ul class="nav-list">
+      <li class="nav-item"><a href="index.html">HOME</a></li>
+      <li class="nav-item"><a href="data-sensor.html">DATA SENSOR</a></li>
+      <li class="nav-item active"><a href="history-action.html">HISTORY ACTION</a></li>
+      <li class="nav-item"><a href="profile.html">PROFILE</a></li>
+    </ul>
+  </nav>
+
+  <!-- ===== HISTORY ACTION PAGE ===== -->
+  <div class="ds-page">
+
+    <!-- ── Toolbar ── -->
+    <div class="ha-toolbar">
+
+      <!-- Search (left) -->
+      <div class="ha-search-wrap">
+        <input type="text" id="ha-search" placeholder="Search..." autocomplete="off" />
+        <svg class="search-icon" viewBox="0 0 20 20" fill="none"
+             stroke="currentColor" stroke-width="2">
+          <circle cx="8.5" cy="8.5" r="5.5"/>
+          <line x1="13" y1="13" x2="18" y2="18"/>
+        </svg>
+      </div>
+
+      <!-- 2×2 filter grid (right) -->
+      <div class="ha-filters">
+
+        <!-- Row 1, col 1: Device -->
+        <div class="ha-filter-group">
+          <label for="ha-device">Device</label>
+          <select id="ha-device" class="ha-select">
+            <option value="ALL">ALL</option>
+            <option value="Quạt">Quạt</option>
+            <option value="Đèn">Đèn</option>
+            <option value="Điều hòa">Điều hòa</option>
+          </select>
+        </div>
+
+        <!-- Row 1, col 2: Action -->
+        <div class="ha-filter-group">
+          <label for="ha-action">Action</label>
+          <select id="ha-action" class="ha-select">
+            <option value="ALL">ALL</option>
+            <option value="ON">ON</option>
+            <option value="OFF">OFF</option>
+          </select>
+        </div>
+
+        <!-- Row 2, col 1: Status -->
+        <div class="ha-filter-group">
+          <label for="ha-status">Status</label>
+          <select id="ha-status" class="ha-select">
+            <option value="ALL">ALL</option>
+            <option value="SUCCESS">SUCCESS</option>
+            <option value="FAILED">FAILED</option>
+            <option value="WAITING">WAITING</option>
+          </select>
+        </div>
+
+        <!-- Row 2, col 2: Sort -->
+        <div class="ha-filter-group">
+          <label for="ha-sort">Sort</label>
+          <select id="ha-sort" class="ha-select">
+            <option value="newest">Newest</option>
+            <option value="oldest">Oldest</option>
+          </select>
+        </div>
+
+      </div><!-- /.ha-filters -->
+    </div><!-- /.ha-toolbar -->
+
+    <!-- ── Table ── -->
+    <div class="ha-table-wrap">
+      <table class="ha-table">
+        <thead>
+          <tr>
+            <th>Device ID</th>
+            <th>Device Name</th>
+            <th>Action</th>
+            <th>Status</th>
+            <th>Time</th>
+          </tr>
+        </thead>
+        <tbody id="ha-tbody">
+          <!-- Rows injected by JS -->
+        </tbody>
+      </table>
+    </div>
+
+    <!-- ── Pagination ── -->
+    <div class="ha-pagination" id="ha-pagination"></div>
+
+  </div><!-- /.ds-page -->
+
+  <script src="js/history-action.js"></script>
+</body>
+</html>
